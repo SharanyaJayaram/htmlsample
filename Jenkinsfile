@@ -18,7 +18,7 @@ pipeline {
             steps {
                withCredentials([usernamePassword(credentialsId: 'dockerid', passwordVariable: 'dockeridPassword', usernameVariable: 'dockeridUser')]) {
             sh '''docker login -u ${env.dockeridUser} -p ${env.dockeridPassword}
-            docker tag ubuntu sharanyajayaram/htmltask:latest
+            docker tag htmlimage:latest sharanyajayaram/htmltask:latest
             docker push sharanyajayaram/htmltask:latest'''
             }
             }
