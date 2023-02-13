@@ -17,8 +17,9 @@ pipeline {
         stage('Push Image to Dockerhub') {
             steps {
                withCredentials([usernamePassword(credentialsId: 'dockerid', passwordVariable: 'dockeridPassword', usernameVariable: 'dockeridUser')]) {
-            sh "docker login -u ${env.dockeridUser} -p ${env.dockeridPassword}"
-            sh 'docker push sharanyajayaram/htmltask:latest'
+            sh '''docker login -u ${env.dockeridUser} -p ${env.dockeridPassword}
+            docker tag ubuntu sharanyajayaram/htmltask:latest
+            docker push sharanyajayaram/htmltask:latest'''
             }
             }
         }
